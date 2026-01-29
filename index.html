@@ -10,12 +10,17 @@
     <div class="container">
         <h1>✨ Daily Inspiration ✨</h1>
         <div class="quote-box">
+            <div class="quote-icon">"</div>
             <p id="quote">Click the button to get inspired!</p>
             <p id="author"></p>
         </div>
-        <button onclick="generateQuote()">New Quote</button>
+        <div class="button-group">
+            <button onclick="generateQuote()">New Quote</button>
+            <button class="download-btn" onclick="downloadQuote()">📥 Download Image</button>
+        </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

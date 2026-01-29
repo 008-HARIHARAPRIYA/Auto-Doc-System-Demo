@@ -32,3 +32,37 @@ function generateQuote() {
     document.getElementById('quote').innerText = selectedQuote.text;
     document.getElementById('author').innerText = '— ' + selectedQuote.author;
 }
+
+function downloadQuote() {
+    const quoteText = document.getElementById('quote').innerText;
+    const authorText = document.getElementById('author').innerText;
+    
+    // Check if there's a quote to download
+    if (quoteText === "Click the button to get inspired!") {
+        alert("Please generate a quote first!");
+        return;
+    }
+    
+    // Get the quote box element
+    const quoteBox = document.querySelector('.quote-box');
+    
+    // Use html2canvas to capture the quote box as an image
+    html2canvas(quoteBox, {
+        backgroundColor: '#f8f9fa',
+        scale: 2, // Higher quality
+        logging: false
+    }).then(canvas => {
+        // Convert canvas to blob
+        canvas.toBlob(blob => {
+            // Create download link
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = 'quote.png';
+            link.href = url;
+            link.click();
+            
+            // Clean up
+            URL.revokeObjectURL(url);
+        });
+    });
+}
